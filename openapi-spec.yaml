@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  title: Auth Service API
+  description: API documentation for the authentication service handling user login, signup, logout, and callback functionality.
+  version: 1.0.0
+paths:
+  /login:
+    get:
+      summary: User login
+      description: Initiates the login process for a user.
+      responses:
+        '200':
+          description: Login successful
+        '401':
+          description: Unauthorized
+  /signup:
+    get:
+      summary: User signup
+      description: Initiates the signup process for a new user.
+      responses:
+        '201':
+          description: Signup successful
+        '400':
+          description: Bad request
+  /logout:
+    get:
+      summary: User logout
+      description: Logs out the current user session.
+      responses:
+        '200':
+          description: Logout successful
+        '401':
+          description: Unauthorized
+  /callback:
+    get:
+      summary: Authorization callback
+      description: Callback endpoint for handling responses from the authorization server.
+      responses:
+        '200':
+          description: Callback handled successfully
+        '400':
+          description: Bad request
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

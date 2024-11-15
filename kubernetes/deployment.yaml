@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sport-matchmaking-auth-service
+spec:
+  selector:
+    matchLabels:
+      app: sport-matchmaking-auth-service
+  template:
+    metadata:
+      labels:
+        app: sport-matchmaking-auth-service
+    spec:
+      containers:
+      - name: sport-matchmaking-auth-service
+        image: sport-matchmaking-auth-service:latest
+        imagePullPolicy: Never
+        resources:
+          requests:
+            cpu: 100m
+            memory: "16Mi"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        env:
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: user
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: password
+          - name: PGHOST
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: host
+          - name: PGPORT
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: port
+          - name: PGDATABASE
+            valueFrom:
+              secretKeyRef:
+                name: postgres-credentials
+                key: database
+          - name: KEYCLOAK_URL
+            valueFrom:
+              secretKeyRef:
+                name: keycloak-credentials
+                key: url
+          - name: KEYCLOAK_REALM
+            valueFrom:
+              secretKeyRef:
+                name: keycloak-credentials
+                key: realm
+          - name: KEYCLOAK_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: keycloak-credentials
+                key: clientId
+          - name: KEYCLOAK_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: keycloak-credentials
+                key: clientSecret

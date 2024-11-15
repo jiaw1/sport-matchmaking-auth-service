@@ -1,0 +1,17 @@
+services:
+  database:
+    container_name: auth-service-postgres
+    image: postgres:17.0
+    shm_size: 128mb
+    env_file:
+      - dev.env
+  sport-matchmaking-auth-service:
+    image: sport-matchmaking-auth-service
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    env_file:
+      - dev.env
+    restart: on-failure
