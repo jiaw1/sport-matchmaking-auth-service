@@ -1,5 +1,3 @@
 # Sport Matchmaking - Auth Service
 
-## Running on Kubernetes
-
-1. Execute `kubectl apply -f ./kubernetes/`
+Auth Service API for Sport Matchmaking handles user login/logout/register.
