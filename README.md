@@ -1,4 +1,4 @@
-# Sport Matchmaking - Match Service
+# Sport Matchmaking - Auth Service
 
 ## Running on Kubernetes
 
